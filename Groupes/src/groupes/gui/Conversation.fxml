@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="526.0" prefWidth="833.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="groupes.gui.ConversationController">
+   <children>
+      <Text layoutX="265.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Communication">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Text>
+      <TableView fx:id="GTable" layoutX="462.0" layoutY="167.0" prefHeight="314.0" prefWidth="306.0">
+         <columns>
+            <TableColumn fx:id="TName" prefWidth="62.39996337890625" text="Name" />
+            <TableColumn fx:id="TPrenom" prefWidth="68.00003051757812" text="Prenom" />
+            <TableColumn fx:id="TEmail" prefWidth="193.60003662109375" text="Email" />
+         </columns>
+      </TableView>
+      <JFXButton fx:id="OpenConvbtn" layoutX="285.0" layoutY="263.0" onMouseClicked="#OpenConv" prefHeight="46.0" prefWidth="131.0" style="-fx-background-color: grey;" text="Open Conversation" />
+      <ImageView fx:id="ReturnImg" fitHeight="34.0" fitWidth="33.0" layoutX="58.0" layoutY="45.0" onMouseClicked="#Return">
+         <image>
+            <Image url="@../../imgs/return.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+   </children>
+</AnchorPane>
