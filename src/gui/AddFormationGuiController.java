@@ -168,14 +168,29 @@ public class AddFormationGuiController implements Initializable {
         tfRemise.setText(String.valueOf(formation.getRemise()));
         tfDuree.setText(formation.getDuree());
         tfDescription.setText(formation.getDescription());
-        String video = formation.getVideo();
-        Media media = new Media(video);
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        if(formation.getVideo()!=null){
+    String videoPath = formation.getVideo();
+ 
+    // Check if the path is in the desired format (file:/C:/Users/hamad/Downloads/Video/vid1.mp4)
+    if (!videoPath.startsWith("file:/C:")) {
+        // If not, construct the absolute path
+        String baseDirectory = "C:/Users/hamad/Downloads/Video/";
+        videoPath = "file:/" + baseDirectory + videoPath;
+        int indexOfDash = videoPath.indexOf('-');
+    int indexOfDot = videoPath.indexOf('.', indexOfDash);
 
-        // Associez le MediaPlayer à la MediaView pour l'affichage de la vidéo
-        mediaView.setMediaPlayer(mediaPlayer);
-         mediaPlayer.play();
-        // Remplissez d'autres champs en conséquence
+    if (indexOfDash != -1 && indexOfDot != -1) {
+        videoPath = videoPath.substring(0, indexOfDash) + videoPath.substring(indexOfDot);
+    }
+
+    }
+        Media media = new Media(videoPath);
+
+  MediaPlayer mediaPlayer = new MediaPlayer(media);
+    mediaView.setMediaPlayer(mediaPlayer);
+    // Play the video (you can add play/stop/pause controls if needed).
+    mediaPlayer.play();
+    }
     }
     
 

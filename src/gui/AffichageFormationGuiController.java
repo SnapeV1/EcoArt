@@ -51,7 +51,14 @@ Utilisateur current;
      public void setUtilisateurs(Utilisateur current){
         this.current=current;
          
-         System.out.println("AAAAAAAAAA" + current);
+          try {
+            menuDisplayCard();
+        } catch (SQLException ex) {
+            Logger.getLogger(AffichageFormationGuiController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(AffichageFormationGuiController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }
      String type;
     @FXML
@@ -79,13 +86,6 @@ Utilisateur current;
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
          //refreshOrder();
-        try {
-            menuDisplayCard();
-        } catch (SQLException ex) {
-            Logger.getLogger(AffichageFormationGuiController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(AffichageFormationGuiController.class.getName()).log(Level.SEVERE, null, ex);
-        }
        
     
        

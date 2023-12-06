@@ -58,14 +58,14 @@ public void ajoutEventUser(EventUser e, String path) throws IOException, SQLExce
     boolean isUnique = false;
     
     String selectQuery = "SELECT * FROM eventadmin WHERE nom_a = ?";
-    String insertQuery = "INSERT INTO eventuser (id, nom, date, lieu, description, image, prix,path_qr) VALUES (?, ?, ?, ?, ?, ?,? ,?)";
-    String insertQuery2 = "INSERT INTO eventadmin (id_a, nom_a, date_a, lieu_a, description_a, image_a, prix_a,path_qr) VALUES (?, ?, ?, ?, ?, ?,? ,?)";
+    String insertQuery = "INSERT INTO eventuser (id, nom, date, lieu, description, image, prix) VALUES (?, ?, ?, ?, ?, ?,? )";
+    String insertQuery2 = "INSERT INTO eventadmin (id, nom_a, date_a, lieu_a, description_a, image_a, prix_a) VALUES (?, ?, ?, ?, ?, ?,? )";
     
-    LocalDate localdate = e.getDate_u();
+    LocalDate localdate = e.getDate();
     Date sqlDate = Date.valueOf(localdate);
     
     PreparedStatement pst = myConx.prepareStatement(selectQuery);
-    pst.setString(1, e.getNom_u());
+    pst.setString(1, e.getNom());
     ResultSet resultSet = pst.executeQuery();
     
     if (resultSet.next()) {
@@ -77,26 +77,26 @@ public void ajoutEventUser(EventUser e, String path) throws IOException, SQLExce
         alert.showAndWait();
     } else {
         pst = myConx.prepareStatement(insertQuery);
-        pst.setInt(1, e.getId_u());
-        pst.setString(2, e.getNom_u());
+        pst.setInt(1, e.getId());
+        pst.setString(2, e.getNom());
         pst.setDate(3, sqlDate);
-        pst.setString(4, e.getLieu_u());
-        pst.setString(5, e.getDescription_u());
+        pst.setString(4, e.getLieu());
+        pst.setString(5, e.getDescription());
         pst.setString(6, path);
-        pst.setInt(7, e.getPrix_u());
-        pst.setString(8,e.getPathQR());
+        pst.setInt(7, e.getPrix());
+        
         pst.executeUpdate();
         
         // Insert into the eventadmin table with the same data
         PreparedStatement pst2 = myConx.prepareStatement(insertQuery2);
-        pst2.setInt(1, e.getId_u());
-        pst2.setString(2, e.getNom_u());
+        pst2.setInt(1, e.getId());
+        pst2.setString(2, e.getNom());
         pst2.setDate(3, sqlDate);
-        pst2.setString(4, e.getLieu_u());
-        pst2.setString(5, e.getDescription_u());
+        pst2.setString(4, e.getLieu());
+        pst2.setString(5, e.getDescription());
         pst2.setString(6, path);
-        pst2.setInt(7, e.getPrix_u());
-             pst2.setString(8,e.getPathQR());
+        pst2.setInt(7, e.getPrix());
+             
 
         pst2.executeUpdate();
     }
@@ -112,20 +112,20 @@ public void ajoutEventUser(EventUser e, String path) throws IOException, SQLExce
         String updateQuery = "UPDATE eventuser SET nom = ?, date = ?, lieu = ?, description = ?, image = ?, prix = ? WHERE id = ?";
 
         // Convert the JavaFX LocalDate to a SQL Date
-        LocalDate localdate = e.getDate_u();
+        LocalDate localdate = e.getDate();
         Date sqlDate = Date.valueOf(localdate);
 
         // Prepare the SQL statement
         pst = myConx.prepareStatement(updateQuery);
  
-        pst.setString(1, e.getNom_u());
+        pst.setString(1, e.getNom());
         pst.setDate(2, sqlDate);
-        pst.setString(3,e.getLieu_u() );
-        pst.setString(4, e.getDescription_u());
+        pst.setString(3,e.getLieu() );
+        pst.setString(4, e.getDescription());
         pst.setString(5, path);
-        pst.setInt(6, e.getPrix_u());
+        pst.setInt(6, e.getPrix());
         
-        pst.setInt(7, e.getId_u());
+        pst.setInt(7, e.getId());
         
 
 
@@ -157,7 +157,7 @@ public void ajoutEventUser(EventUser e, String path) throws IOException, SQLExce
     public int supprimerEventUser(EventUser e) {
     try {
         // Get the ID of the EventAdmin you want to delete
-        int eventId = e.getId_u();
+        int eventId = e.getId();
 
         Alert confirmDelete = new Alert(Alert.AlertType.CONFIRMATION);
         confirmDelete.setTitle("Confirm Deletion");
@@ -203,12 +203,12 @@ public void ajoutEventUser(EventUser e, String path) throws IOException, SQLExce
      
           
          
-        colnom_u.setCellValueFactory(new PropertyValueFactory<>("nom_u"));
-        coldate_u.setCellValueFactory(new PropertyValueFactory<>("date_u"));
-        collieu_u.setCellValueFactory(new PropertyValueFactory<>("lieu_u"));
-        coldesc_u.setCellValueFactory(new PropertyValueFactory<>("description_u"));
+        colnom_u.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        coldate_u.setCellValueFactory(new PropertyValueFactory<>("date"));
+        collieu_u.setCellValueFactory(new PropertyValueFactory<>("lieu"));
+        coldesc_u.setCellValueFactory(new PropertyValueFactory<>("description"));
        
-        colprix_u.setCellValueFactory(new PropertyValueFactory<>("prix_u"));
+        colprix_u.setCellValueFactory(new PropertyValueFactory<>("prix"));
         tabResv_u.setItems(resvlist);
 }
          private ObservableList<EventUser> getEventUserList() throws SQLException {

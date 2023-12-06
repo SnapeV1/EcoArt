@@ -54,49 +54,50 @@ public class MiscFunctions {
    // private final String secretKey = "A26B773F41F90732D8497BDFB6F15021";
     GroupFunctions GF=new GroupFunctions();
   
-    public void setLogoForGroup(int id,ImageView logo2) {
+    public void setLogoForGroup(int id, ImageView logo2) {
     try {
-      
+
         String query = "SELECT logo FROM groups WHERE id = ?";
 
-          java.sql.PreparedStatement preparedStatement = MyConnection.getInstance().getCnx()
-                                    .prepareStatement(query) ;
+        java.sql.PreparedStatement preparedStatement = MyConnection.getInstance().getCnx().prepareStatement(query);
         preparedStatement.setInt(1, id);
 
-       
         java.sql.ResultSet resultSet = preparedStatement.executeQuery();
 
         if (resultSet.next()) {
-           
+
             String path = resultSet.getString("logo");
 
             if (path != null) {
-               
-                  File imageFile = new File(path);
+                // Check if the path is not an absolute path (doesn't start with C:\)
+                if (!path.startsWith("C:\\")) {
+                    // Assuming you have a base directory for your images, replace "YOUR_BASE_DIRECTORY" with your actual base directory
+                    String baseDirectory = "C:\\Users\\hamad\\OneDrive\\Desktop\\WebSymfony\\public\\";
+                    path = baseDirectory + "\\" + path;
+                }
+                System.out.println("image path"+path);
+                File imageFile = new File(path);
 
-               if (imageFile.exists()) {
-                     FileInputStream fileInputStream=null;
-                    
-                      try {
-                          fileInputStream = new FileInputStream(imageFile);
-                      } catch (FileNotFoundException ex) {
-                          Logger.getLogger(MiscFunctions.class.getName()).log(Level.SEVERE, null, ex);
-                      }
-            Image logoImage = new Image(fileInputStream);
+                if (imageFile.exists()) {
+                    FileInputStream fileInputStream = null;
 
-                    
+                    try {
+                        fileInputStream = new FileInputStream(imageFile);
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(MiscFunctions.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    Image logoImage = new Image(fileInputStream);
+
                     logo2.setImage(logoImage);
                 }
             }
         }
 
-      
         resultSet.close();
         preparedStatement.close();
-     
+
     } catch (SQLException e) {
         System.out.println(e.getMessage());
-        
     }
 }
 

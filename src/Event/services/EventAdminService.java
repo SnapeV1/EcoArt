@@ -80,7 +80,7 @@ public void ajoutEventAdmin(EventAdmin e, String path) throws IOException, SQLEx
     
          String selectQuery = "SELECT * FROM eventadmin WHERE nom_a = ?";
         // Prepare the SQL INSERT query
-        String insertQuery = "INSERT INTO eventadmin (id_a, nom_a, date_a, lieu_a, description_a, image_a, prix_a,path_qr) VALUES (?, ?, ?, ?, ?, ?, ?,?)";
+        String insertQuery = "INSERT INTO eventadmin (id, nom_a, date_a, lieu_a, description_a, image_a, prix_a) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         // Convert the JavaFX LocalDate to a SQL Date
         LocalDate localdate = e.getDate_a();
@@ -114,7 +114,7 @@ public void ajoutEventAdmin(EventAdmin e, String path) throws IOException, SQLEx
         else {
         // Prepare the SQL statement
         pst = myConx.prepareStatement(insertQuery);
-        pst.setInt(1, e.getId_a());
+        pst.setInt(1, e.getId());
         pst.setString(2, e.getNom_a());
         pst.setDate(3, sqlDate);
         pst.setString(4, e.getLieu_a());
@@ -122,7 +122,7 @@ public void ajoutEventAdmin(EventAdmin e, String path) throws IOException, SQLEx
         pst.setString(6, path);
         
         pst.setInt(7, e.getPrix_a());
-pst.setString(8, e.getPathQR());
+
         // Execute the SQL statement to insert the event
         pst.executeUpdate();
 
@@ -138,7 +138,7 @@ pst.setString(8, e.getPathQR());
 public void modifEventAdmin(EventAdmin e, String path) throws IOException {
     try {
         // Prepare the SQL UPDATE query
-        String updateQuery = "UPDATE eventadmin SET nom_a = ?, date_a = ?, lieu_a = ?, description_a = ?, image_a = ?, prix_a = ? WHERE id_a = ?";
+        String updateQuery = "UPDATE eventadmin SET nom_a = ?, date_a = ?, lieu_a = ?, description_a = ?, image_a = ?, prix_a = ? WHERE id = ?";
 
         // Convert the JavaFX LocalDate to a SQL Date
         LocalDate localdate = e.getDate_a();
@@ -163,7 +163,7 @@ public void modifEventAdmin(EventAdmin e, String path) throws IOException {
         pst.setString(5, path);
         pst.setInt(6, e.getPrix_a());
         
-        pst.setInt(7, e.getId_a());
+        pst.setInt(7, e.getId());
         
 
         // Execute the SQL statement to update the event
@@ -198,7 +198,7 @@ public void modifEventAdmin(EventAdmin e, String path) throws IOException {
     public int supprimerEventAdmin(EventAdmin e) {
     try {
         // Get the ID of the EventAdmin you want to delete
-        int eventId = e.getId_a();
+        int eventId = e.getId();
 
         Alert confirmDelete = new Alert(Alert.AlertType.CONFIRMATION);
         confirmDelete.setTitle("Confirm Deletion");
@@ -208,7 +208,7 @@ public void modifEventAdmin(EventAdmin e, String path) throws IOException {
         Optional<ButtonType> result = confirmDelete.showAndWait();
 
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            String deleteQuery = "DELETE FROM eventadmin WHERE id_a = ?";
+            String deleteQuery = "DELETE FROM eventadmin WHERE id = ?";
 
             pst = myConx.prepareStatement(deleteQuery);
             pst.setInt(1, eventId);
@@ -266,14 +266,14 @@ public void modifEventAdmin(EventAdmin e, String path) throws IOException {
              ObservableList<EventAdmin> EventAdminlist =FXCollections.observableArrayList();
             while (rs.next()){
               EventAdminlist.add(new EventAdmin(
-    rs.getInt("id_a"),         ///id_a de DB
+    rs.getInt("id"),         ///id_a de DB
     rs.getString("nom_a"),
     rs.getDate("date_a").toLocalDate(),
     rs.getString("lieu_a"),
     rs.getString("description_a"),
     rs.getString("image_a"),
-    rs.getInt("prix_a"),
-                      rs.getString("path_qr")
+    rs.getInt("prix_a")
+                      
 ));
                       
                         } 

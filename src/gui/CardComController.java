@@ -30,7 +30,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
-
+import java.nio.*;
 /**
  * FXML Controller class
  *
@@ -121,15 +121,29 @@ public class CardComController implements Initializable {
     titreformation.setText(f.getTitre());
     prixformation.setText(String.valueOf(f.getPrix()));
    
-    
-    Media media = new Media(f.getVideo());
-    MediaPlayer mediaPlayer = new MediaPlayer(media);
+    if(f.getVideo()!=null){
+    String videoPath = f.getVideo();
+ 
+    // Check if the path is in the desired format (file:/C:/Users/hamad/Downloads/Video/vid1.mp4)
+    if (!videoPath.startsWith("file:/C:")) {
+        // If not, construct the absolute path
+        String baseDirectory = "C:/Users/hamad/Downloads/Video/";
+        videoPath = "file:/" + baseDirectory + videoPath;
+        int indexOfDash = videoPath.indexOf('-');
+    int indexOfDot = videoPath.indexOf('.', indexOfDash);
 
-    // Assuming Pvideo is the name of your VideoView or MediaView
+    if (indexOfDash != -1 && indexOfDot != -1) {
+        videoPath = videoPath.substring(0, indexOfDash) + videoPath.substring(indexOfDot);
+    }
+
+    }
+        Media media = new Media(videoPath);
+
+  MediaPlayer mediaPlayer = new MediaPlayer(media);
     mediaView.setMediaPlayer(mediaPlayer);
-
     // Play the video (you can add play/stop/pause controls if needed).
     mediaPlayer.play();
+    }
 }
     
     

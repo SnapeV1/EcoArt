@@ -279,7 +279,7 @@ private void Modresv(MouseEvent event) {
 if (selectedIndex >= 0) {
     // If a row is selected, retrieve the ID from the database
     EventAdmin selectedEvent = tabResv_a.getSelectionModel().getSelectedItem();
-    selectedId = selectedEvent.getId_a();
+    selectedId = selectedEvent.getId();
     
 }
             EventAdmin e = new EventAdmin(selectedId, nom, date, lieu, description,path, prix);

@@ -260,7 +260,7 @@ public class EventUserController implements Initializable {
 if (selectedIndex >= 0) {
     // If a row is selected, retrieve the ID from the database
     EventUser selectedEvent = tabResv_u.getItems().get(selectedIndex);
-    selectedId = selectedEvent.getId_u();
+    selectedId = selectedEvent.getId();
 }
             EventUser e = new EventUser(selectedId, nom, date, lieu, description,path, prix);
                 
@@ -280,8 +280,8 @@ if (selectedIndex >= 0) {
         
          EventUser selectedEvent = tabResv_u.getSelectionModel().getSelectedItem();
 if (selectedEvent != null) {
-    String nom_u = selectedEvent.getNom_u();
-    String lieu_u = selectedEvent.getLieu_u();   
+    String nom_u = selectedEvent.getNom();
+    String lieu_u = selectedEvent.getLieu();   
     // Query the database to get the image data and other information based on nom_a and lieu_a
     String query = "SELECT image, date, prix, description FROM eventuser WHERE nom = ? AND lieu = ?";
     try {

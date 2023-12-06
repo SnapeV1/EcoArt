@@ -6,23 +6,20 @@
 package Event.entities;
 
 import java.time.LocalDate;
-import javafx.scene.image.Image;
-
-
 
 /**
  *
  * @author ASUS
  */
-  public class EventAdmin {
-   private int id_a;
+public class EventAdmin {
+    private int id;
     private String nom_a;
     private LocalDate date_a;
     private String lieu_a;
     private String description_a;
     private String image_a; // Change the image data type to byte array
     private int prix_a;
-    private String pathQR ;
+    private String pathQR;
 
     public String getPathQR() {
         return pathQR;
@@ -31,14 +28,12 @@ import javafx.scene.image.Image;
     public void setPathQR(String pathQR) {
         this.pathQR = pathQR;
     }
-    
-    
-    
+
     public EventAdmin() {
     }
 
-    public EventAdmin(int id_a, String nom_a, LocalDate date_a, String lieu_a, String description_a, String image_a, int prix_a) {
-        this.id_a = id_a;
+    public EventAdmin(int id, String nom_a, LocalDate date_a, String lieu_a, String description_a, String image_a, int prix_a) {
+        this.id = id;
         this.nom_a = nom_a;
         this.date_a = date_a;
         this.lieu_a = lieu_a;
@@ -57,8 +52,8 @@ import javafx.scene.image.Image;
         this.pathQR = pathQR;
     }
 
-    public EventAdmin(int id_a, String nom_a, LocalDate date_a, String lieu_a, String description_a, String image_a, int prix_a, String pathQR) {
-        this.id_a = id_a;
+    public EventAdmin(int id, String nom_a, LocalDate date_a, String lieu_a, String description_a, String image_a, int prix_a, String pathQR) {
+        this.id = id;
         this.nom_a = nom_a;
         this.date_a = date_a;
         this.lieu_a = lieu_a;
@@ -67,14 +62,13 @@ import javafx.scene.image.Image;
         this.prix_a = prix_a;
         this.pathQR = pathQR;
     }
-    
 
-    public int getId_a() {
-        return id_a;
+    public int getId() {
+        return id;
     }
 
-    public void setId_a(int id_a) {
-        this.id_a = id_a;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNom_a() {
@@ -127,16 +121,6 @@ import javafx.scene.image.Image;
 
     @Override
     public String toString() {
-        return "EventAdmin{" + "id_a=" + id_a + ", nom_a=" + nom_a + ", date_a=" + date_a + ", lieu_a=" + lieu_a + ", description_a=" + description_a + ", image_a=" + image_a + ", prix_a=" + prix_a + ", pathQR=" + pathQR + '}';
+        return "EventAdmin{" + "id=" + id + ", nom_a=" + nom_a + ", date_a=" + date_a + ", lieu_a=" + lieu_a + ", description_a=" + description_a + ", image_a=" + image_a + ", prix_a=" + prix_a + ", pathQR=" + pathQR + '}';
     }
-
-    
-   
-    
-
-   
-
-  
-    
-    
 }

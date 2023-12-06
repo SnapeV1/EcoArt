@@ -12,103 +12,103 @@ import java.time.LocalDate;
  * @author ASUS
  */
 public class EventUser {
-       private int id_u ;
-    private String nom_u ;
-    private LocalDate date_u ;
-     private String lieu_u ;
-    private String description_u ;
-     private String image_u;
-    private int prix_u;
-    private String pathQR;
+    private int id;
+    private String nom;
+    private LocalDate date;
+    private String lieu;
+    private String description;
+    private String image;
+    private int prix;
+    private String pathQR ;
 
     public EventUser() {
     }
 
-    public EventUser(int id_u, String nom_u, LocalDate date_u, String lieu_u, String description_u, String image_u, int prix_u) {
-        this.id_u = id_u;
-        this.nom_u = nom_u;
-        this.date_u = date_u;
-        this.lieu_u = lieu_u;
-        this.description_u = description_u;
-        this.image_u = image_u;
-        this.prix_u = prix_u;
+    public EventUser(int id, String nom, LocalDate date, String lieu, String description, String image, int prix) {
+        this.id = id;
+        this.nom = nom;
+        this.date = date;
+        this.lieu = lieu;
+        this.description = description;
+        this.image = image;
+        this.prix = prix;
     }
 
-    public EventUser(int id_u, String nom_u, LocalDate date_u, String lieu_u, String description_u, String image_u, int prix_u, String pathQR) {
-        this.id_u = id_u;
-        this.nom_u = nom_u;
-        this.date_u = date_u;
-        this.lieu_u = lieu_u;
-        this.description_u = description_u;
-        this.image_u = image_u;
-        this.prix_u = prix_u;
+    public EventUser(int id, String nom, LocalDate date, String lieu, String description, String image, int prix, String pathQR) {
+        this.id = id;
+        this.nom = nom;
+        this.date = date;
+        this.lieu = lieu;
+        this.description = description;
+        this.image = image;
+        this.prix = prix;
         this.pathQR = pathQR;
     }
 
-    public EventUser(String nom_u, LocalDate date_u, String lieu_u, String description_u, String image_u, int prix_u, String pathQR) {
-        this.nom_u = nom_u;
-        this.date_u = date_u;
-        this.lieu_u = lieu_u;
-        this.description_u = description_u;
-        this.image_u = image_u;
-        this.prix_u = prix_u;
+    public EventUser(String nom, LocalDate date, String lieu, String description, String image, int prix, String pathQR) {
+        this.nom = nom;
+        this.date = date;
+        this.lieu = lieu;
+        this.description = description;
+        this.image = image;
+        this.prix = prix;
         this.pathQR = pathQR;
     }
-    
-    public int getId_u() {
-        return id_u;
+
+    public int getId() {
+        return id;
     }
 
-    public void setId_u(int id_u) {
-        this.id_u = id_u;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getNom_u() {
-        return nom_u;
+    public String getNom() {
+        return nom;
     }
 
-    public void setNom_u(String nom_u) {
-        this.nom_u = nom_u;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
-    public LocalDate getDate_u() {
-        return date_u;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setDate_u(LocalDate date_u) {
-        this.date_u = date_u;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
-    public String getLieu_u() {
-        return lieu_u;
+    public String getLieu() {
+        return lieu;
     }
 
-    public void setLieu_u(String lieu_u) {
-        this.lieu_u = lieu_u;
+    public void setLieu(String lieu) {
+        this.lieu = lieu;
     }
 
-    public String getDescription_u() {
-        return description_u;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescription_u(String description_u) {
-        this.description_u = description_u;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getImage_u() {
-        return image_u;
+    public String getImage() {
+        return image;
     }
 
-    public void setImage_u(String image_u) {
-        this.image_u = image_u;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public int getPrix_u() {
-        return prix_u;
+    public int getPrix() {
+        return prix;
     }
 
-    public void setPrix_u(int prix_u) {
-        this.prix_u = prix_u;
+    public void setPrix(int prix) {
+        this.prix = prix;
     }
 
     public String getPathQR() {
@@ -121,14 +121,10 @@ public class EventUser {
 
     @Override
     public String toString() {
-        return "EventUser{" + "id_u=" + id_u + ", nom_u=" + nom_u + ", date_u=" + date_u + ", lieu_u=" + lieu_u + ", description_u=" + description_u + ", image_u=" + image_u + ", prix_u=" + prix_u + ", pathQR=" + pathQR + '}';
+        return "EventUser{" + "id=" + id + ", nom=" + nom + ", date=" + date + ", lieu=" + lieu + ", description=" + description + ", image=" + image + ", prix=" + prix + ", pathQR=" + pathQR + '}';
     }
-    
-    
 
-   
-    
-
-  
-    
+    public Object getDate_a() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
