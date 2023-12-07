@@ -118,13 +118,28 @@ return productResult;
          Pqte.setValueFactory(valueFactory);
       
 
-            File imageFile = new File(p.getImage());
+           
+
+            
+            
+            String path=p.getImage();
+            
+            if (path!= null) {
+                // Check if the path is not an absolute path (doesn't start with C:\)
+                if (!path.startsWith("C:\\")) {
+                    // Assuming you have a base directory for your images, replace "YOUR_BASE_DIRECTORY" with your actual base directory
+                    String baseDirectory = "C:\\Users\\hamad\\OneDrive\\Desktop\\WebSymfony\\public\\uploads\\";
+                    path = baseDirectory + "\\" + path;
+                    System.out.println(path);
+                }
+                    
+             File imageFile = new File(path);
             Image image = new Image(imageFile.toURI().toString(),90,94,false,true);
             
             Pimage.setImage(image);
-
-
-    }
+            
+                }
+   }
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {

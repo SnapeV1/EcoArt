@@ -6,6 +6,7 @@
 package gui;
 
 import Utilisateur.Utilisateur;
+import gui.homePage.HomPageController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -313,11 +314,11 @@ private void descP(TableColumn.CellEditEvent<product, String> event) {
             Parent root = loader.load();
             
             
-              BoutiqueController controllerEvent=loader.getController();
+              HomPageController controllerEvent=loader.getController();
             controllerEvent.setUtilisateur(current);
 
             Stage cStage= (Stage) this.Home.getScene().getWindow();
-            cStage.setWidth(1200);
+            cStage.setWidth(775);
             cStage.setHeight(540);
               
             Home.getScene().setRoot(root);

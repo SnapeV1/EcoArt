@@ -291,10 +291,23 @@ if (selectedEvent != null) {
         ResultSet rs = pst.executeQuery();
 
         if (rs.next()) {
-            path=rs.getString("image");
-            File imageFile = new File(path);
+            String path=rs.getString("image");
+            
+            
+            if (path!= null) {
+                // Check if the path is not an absolute path (doesn't start with C:\)
+                if (!path.startsWith("C:\\")) {
+                    // Assuming you have a base directory for your images, replace "YOUR_BASE_DIRECTORY" with your actual base directory
+                    String baseDirectory = "C:\\Users\\hamad\\OneDrive\\Desktop\\WebSymfony\\public\\";
+                    path = baseDirectory + "\\" + path;
+                    System.out.println(path);
+                }
+                    File imageFile = new File(path);
             Image image = new Image(imageFile.toURI().toString());
             espaceImg_u.setImage(image);
+                }
+                    
+            
             System.out.println(path);
             // Fill other JavaFX controls
             tfnom_u.setText(nom_u); // Fill TextField

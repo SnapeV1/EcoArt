@@ -73,6 +73,15 @@ Utilisateur current;
     private Button home;
      public void setUtilisateur(Utilisateur current){
         this.current=current;
+            refreshOrder();
+        try {
+            menuDisplayCard();
+        } catch (SQLException ex) {
+            Logger.getLogger(BoutiqueController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(BoutiqueController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
       
     }
     @FXML
@@ -107,15 +116,7 @@ Utilisateur current;
    public void initialize(URL url, ResourceBundle rb) {
       
              
-         refreshOrder();
-        try {
-            menuDisplayCard();
-        } catch (SQLException ex) {
-            Logger.getLogger(BoutiqueController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(BoutiqueController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
+     
     
        
    
