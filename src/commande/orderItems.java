@@ -14,14 +14,14 @@ import java.util.Date;
  * @author User
  */
 public class orderItems {
-    long numC;
+    long id_c;
     LocalDate date;
     String product;
     int quantite ;
     double prix;
 
-    public orderItems(long numC, LocalDate date, String product, int quantite, double prix) {
-        this.numC = numC;
+    public orderItems(long id_c, LocalDate date, String product, int quantite, double prix) {
+        this.id_c = id_c;
         this.date = date;
         this.product = product;
         this.quantite = quantite;
@@ -29,11 +29,11 @@ public class orderItems {
     }
 
     public long getNumC() {
-        return numC;
+        return id_c;
     }
 
     public void setNumC(long numC) {
-        this.numC = numC;
+        this.id_c = numC;
     }
 
     public LocalDate getDate() {

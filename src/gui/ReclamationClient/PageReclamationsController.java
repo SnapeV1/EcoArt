@@ -96,8 +96,8 @@ public class PageReclamationsController implements Initializable {
               controller.setUtilisateur(current);
               
             Stage cStage= (Stage) this.addReclamation.getScene().getWindow();
-           cStage.setWidth(600);
-            cStage.setHeight(500);
+                cStage.setWidth(750);
+            cStage.setHeight(600);
               
             addReclamation.getScene().setRoot(root);
             

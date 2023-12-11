@@ -280,7 +280,7 @@ public List<commande> getLastLine(){
 public List<orderItems> insertJoinResultIntoTableAndReturnList() {
     List<orderItems> insertedData = new ArrayList<>();
 
-    String insertQuery = "INSERT INTO historique (numC, dateOrder, Product, quantite, prix) " +
+    String insertQuery = "INSERT INTO historique (id_c, dateOrder, Product, quantite, prix) " +
             "SELECT commande.id_c, commande.date, lineorder.productName, lineorder.quantite, lineorder.prix " +
             "FROM commande " +
             "JOIN lineorder ON commande.id_c = lineorder.id_c " +
@@ -298,7 +298,7 @@ public List<orderItems> insertJoinResultIntoTableAndReturnList() {
         ResultSet resultSet = selectStatement.executeQuery();
 
         while (resultSet.next()) {
-            long orderId = resultSet.getLong("numC");
+            long orderId = resultSet.getLong("id_c");
             LocalDate orderDate = resultSet.getDate("dateOrder").toLocalDate();
             String productName = resultSet.getString("Product");
             int quantity = resultSet.getInt("quantite");

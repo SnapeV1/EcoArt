@@ -370,8 +370,8 @@ if (selectedEvent != null) {
               controllerPage.setUtilisateur(current);
               
             Stage cStage= (Stage) this.back.getScene().getWindow();
-            cStage.setWidth(710);
-            cStage.setHeight(740);
+                  cStage.setWidth(750);
+            cStage.setHeight(600);
               
             back.getScene().setRoot(root);
             

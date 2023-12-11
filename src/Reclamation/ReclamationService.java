@@ -44,7 +44,7 @@ public class ReclamationService implements MyCrud<Reclamation> {
 
     @Override
     public int ajouter(Reclamation t) {
-        String req="INSERT INTO `reclamation` ( `contenu`, `etat`,`senderid`) VALUES (?, ?,?);";
+        String req="INSERT INTO `reclamation` ( `contenu`, `etat`,`sender_id`) VALUES (?, ?,?);";
         
         try {
             PreparedStatement prepStat = myConx.prepareStatement(req);
@@ -102,7 +102,7 @@ public class ReclamationService implements MyCrud<Reclamation> {
     public int supprimerParSender(Utilisateur sender) {
         if(this.retournerParUtilisateur(sender)==null)
             return -1;
-        String req=" DELETE FROM reclamation WHERE `reclamation`.`senderid` = ?;";
+        String req=" DELETE FROM reclamation WHERE `reclamation`.`sender_id` = ?;";
         
         try {
             PreparedStatement prepStat = myConx.prepareStatement(req);
@@ -130,7 +130,7 @@ public class ReclamationService implements MyCrud<Reclamation> {
             found.setContenu(rS.getString("contenu"));
             found.setId(rS.getLong("id"));
             found.setEtat(State.valueOf(rS.getString("etat")));
-            temp.setId(rS.getLong("senderid"));
+            temp.setId(rS.getLong("sender_id"));
             found.setSender(userService.chercher(temp));
          
             retour.add(found);
@@ -165,7 +165,7 @@ public class ReclamationService implements MyCrud<Reclamation> {
     }
     
       public List<Reclamation> retournerParUtilisateur( Utilisateur u) {
-        String req="SELECT * FROM `reclamation` where senderid=?";
+        String req="SELECT * FROM `reclamation` where sender_id=?";
         List<Reclamation> retour = new ArrayList();
         Utilisateur temp=new Utilisateur();
         
@@ -181,7 +181,7 @@ public class ReclamationService implements MyCrud<Reclamation> {
             found.setId(rS.getLong("id"));
             found.setEtat(State.valueOf(rS.getString("etat")));
             found.setReponse(rS.getString("reponse"));
-            temp.setId(rS.getLong("senderid"));
+            temp.setId(rS.getLong("sender_id"));
             found.setSender(userService.chercher(temp));
          
             retour.add(found);
@@ -196,7 +196,7 @@ public class ReclamationService implements MyCrud<Reclamation> {
       
       
       public List<Reclamation> retournerParUtilisateur( String username) {
-        String req="SELECT * FROM reclamation r JOIN utilisateur u ON u.id = r.senderid WHERE u.username = ?;";
+        String req="SELECT * FROM reclamation r JOIN utilisateur u ON u.id = r.sender_id WHERE u.username = ?;";
         List<Reclamation> retour = new ArrayList();
         Utilisateur temp=new Utilisateur();
         
@@ -212,7 +212,7 @@ public class ReclamationService implements MyCrud<Reclamation> {
             found.setId(rS.getLong("id"));
             found.setEtat(State.valueOf(rS.getString("etat")));
             found.setReponse(rS.getString("reponse"));
-            temp.setId(rS.getLong("senderid"));
+            temp.setId(rS.getLong("sender_id"));
             found.setSender(userService.chercher(temp));
          
             retour.add(found);

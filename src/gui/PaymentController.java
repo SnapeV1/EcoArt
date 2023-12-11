@@ -184,7 +184,7 @@ try {
                 LineOrderService lS = new LineOrderService();
                 List<LineOrder> lineOrders = lS.getAllOrders();
                 long num = lastCommande.getId_c();
-                String numC= String.valueOf(num);
+                String id_c= String.valueOf(num);
                     System.out.println(name);
                     System.out.println(address);
                     System.out.println(lineOrders);

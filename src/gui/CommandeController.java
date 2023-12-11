@@ -79,13 +79,7 @@ import static javax.management.Query.in;
  * @author User
  */
 public class CommandeController implements Initializable {
-Utilisateur current;
-     public void setUtilisateur(Utilisateur current){
-        this.current=current;
-        tfnom.setText(current.getNom());
-        tfemail.setText(current.getEmail());
-        
-    }
+
     @FXML
     private TextField tfnom;
     @FXML
@@ -132,11 +126,19 @@ Utilisateur current;
     /**
      * Initializes the controller class.
      */
+    Utilisateur current;
+     public void setUtilisateur(Utilisateur current){
+        this.current=current;
+        tfnom.setText(current.getNom());
+        tfemail.setText(current.getEmail());
+          refresh();
+       afficheOrder();
+         System.out.println("commande : " + current);
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-       refresh();
-       afficheOrder();
+     
     }    
 
 
@@ -208,7 +210,6 @@ Utilisateur current;
     }
     public void refresh (){
            ObservableList<orderItems> order = FXCollections.observableArrayList(cs.insertJoinResultIntoTableAndReturnList());
-        numOrder.setCellValueFactory(new PropertyValueFactory<orderItems, Long>("numC"));
         qte.setCellValueFactory(new PropertyValueFactory<orderItems, Integer>("quantite"));
         prix.setCellValueFactory(new PropertyValueFactory<orderItems, Double>("prix"));
         orderDate.setCellValueFactory(new PropertyValueFactory<orderItems, Date>("date"));
@@ -229,7 +230,7 @@ Utilisateur current;
 
     Parent root = loader.load();
     BoutiqueController BC = loader.getController();
-
+BC.setUtilisateur(current);
     Stage newStage = new Stage();
     Scene scene = new Scene(root);
     newStage.setScene(scene);
@@ -306,7 +307,7 @@ Utilisateur current;
     if (!lastCommandes.isEmpty()) {
         commande lastCommande = lastCommandes.get(0);
         int phoneNumber = lastCommande.getNumTel();
-        long numC = lastCommande.getId_c();
+        long id_c = lastCommande.getId_c();
         
 
         // Find your Account SID and Token at twilio.com/console
@@ -321,7 +322,7 @@ Utilisateur current;
             Message message = Message.creator(
                 new com.twilio.type.PhoneNumber("whatsapp:+216" + String.valueOf(phoneNumber)),
                 new com.twilio.type.PhoneNumber("whatsapp:+15153936843"),
-                "Mr/Mme X les articles de la commande num " + numC + " vous seront livrés bientôt.\nMerci d'avoir shoppé avec nous.\nEcoArt"
+                "Mr/Mme X les articles de la commande num " + id_c + " vous seront livrés bientôt.\nMerci d'avoir shoppé avec nous.\nEcoArt"
             ).create();
 
             // Log a success message with Message SID

@@ -395,8 +395,8 @@ return productResult;
               controllerGroupe.setUtilisateur(current);
               
             Stage cStage= (Stage) this.bijoux.getScene().getWindow();
-            cStage.setWidth(800);
-            cStage.setHeight(750);
+                 cStage.setWidth(750);
+            cStage.setHeight(600);
               
             bijoux.getScene().setRoot(root);
             
